@@ -1,16 +1,24 @@
 package lol.hugoqdesh;
 
-public class Main {
-    static void main() {
-        int width = 800;
-        int height = 600;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+public class Main extends JPanel {
+    private final BufferedImage image;
+
+    public Main() {
+        int width = 1920;
+        int height = 1080;
         int n = 255;
+        setPreferredSize(new Dimension(width, height));
+        this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         for(int i = 0; i < height; i++) {
-            double y = (i / 600.0) * 4 - 2;
+            double y = (i / 1000.0) * 4 - 2;
 
             for(int j = 0; j < width; j++) {
-                double x = (j / 800.0) * 4 - 2;
+                double x = (j / 2500.0) * 4 - 2;
 
                 double zImaginary = 0;
                 double zReal = 0;
@@ -33,8 +41,22 @@ public class Main {
                     count++;
                 }
 
-                System.out.println("x: " + x + " y: " + y);
+                image.setRGB(j, i, count * 0x010101);
             }
         }
+    }
+
+    static void main() {
+        JFrame frame = new JFrame("Mandelbrot Set");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(new Main());
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, null);
     }
 }
