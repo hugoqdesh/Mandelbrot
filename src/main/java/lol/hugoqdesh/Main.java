@@ -25,11 +25,8 @@ public class Main extends JPanel {
 
                 int count = 0;
                 while (count < n) {
-                    double cReal = x;
-                    double cImaginary = y;
-
-                    double tempReal = zReal * zReal - zImaginary * zImaginary + cReal;
-                    double tempImaginary = 2 * zReal * zImaginary + cImaginary;
+                    double tempReal = zReal * zReal - zImaginary * zImaginary + x;
+                    double tempImaginary = 2 * zReal * zImaginary + y;
 
                     zReal = tempReal;
                     zImaginary = tempImaginary;
