@@ -15,10 +15,10 @@ public class Main extends JPanel {
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         for(int i = 0; i < height; i++) {
-            double y = (i / 1000.0) * 4 - 2;
+            double y = (i / 1920.0) * 7 - 2;
 
             for(int j = 0; j < width; j++) {
-                double x = (j / 2500.0) * 4 - 2;
+                double x = (j / 1080.0) * 4 - 4;
 
                 double zImaginary = 0;
                 double zReal = 0;
@@ -37,10 +37,8 @@ public class Main extends JPanel {
                     if (zReal * zReal + zImaginary * zImaginary > 4) {
                         break;
                     }
-
                     count++;
                 }
-
                 image.setRGB(j, i, count * 0x010101);
             }
         }
